@@ -24,13 +24,13 @@ def index():
 
 #blog view
 @app.route("/blog")
-def onboarding():
+def blog():
     return render_template("blog.html")
 
 
 #events view
 @app.route("/events")
-def onboarding():
+def events():
     return render_template("events.html")
 
 
