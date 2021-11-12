@@ -8,6 +8,8 @@ node_modules/
 .github/
 envWS.py
 envDB.py
+env.py
+pycache/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
