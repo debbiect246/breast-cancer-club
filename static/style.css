@@ -33,7 +33,7 @@ body {
     padding: 0 10px;
 }
 
-.header {
+header {
     position: fixed;
     width: 100%;
     top: 0;
@@ -41,7 +41,7 @@ body {
     z-index: 50;
 }
 
-.header:before {
+header:before {
     content: '';
     position: absolute;
     width: 100%;
@@ -53,7 +53,7 @@ body {
     z-index: 2;
 }
 
-.header-logo img {
+header-logo img {
     width: auto;
     height: 4.1rem;
     display: inline-block;
@@ -63,7 +63,7 @@ body {
     z-index: 3;
 }
 
-.header-logo:hover {
+header-logo:hover {
     text-decoration: none;
     color: #d7b787
 }
