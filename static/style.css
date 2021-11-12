@@ -33,7 +33,7 @@ body {
     padding: 0 10px;
 }
 
-header {
+#header {
     position: fixed;
     width: 100%;
     top: 0;
@@ -41,7 +41,7 @@ header {
     z-index: 50;
 }
 
-header:before {
+#header:before {
     content: '';
     position: absolute;
     width: 100%;
@@ -53,7 +53,7 @@ header:before {
     z-index: 2;
 }
 
-header-logo img {
+#header-logo img {
     width: auto;
     height: 4.1rem;
     display: inline-block;
