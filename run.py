@@ -12,7 +12,11 @@ if os.path.exists("envWS.py"):
 
 app = Flask(__name__)
 
+
+
+
 # take app configuration from OS environment variables
+app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
 
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
@@ -113,27 +117,64 @@ def events():
     return render_template("events.html")
 
 
+#locations view (temporary)
+@app.route("/locations")
+def locations():
+    locations = mongo.db.locations.find()
+    print('hello')
+    print(locations)
+    meetUps = mongo.db.meetUp.find()
+    print(meetUps)
+    return render_template("locations.html", locations=locations, meetUps=meetUps)
+
+
+@app.route("/add_location", methods=["GET", "POST"])
+def add_location():
+    """
+    Allows admin user to add a location to the database.  It can then be selected when setting up an event
+    """
+    print('add location function called')
+    if request.method == "POST":
+        print('add location POST request')
+        location = {
+            "name": request.form.get("name"),
+            "x": request.form.get("x-coord"),
+            "y": request.form.get("y-coord")
+        }
+        print(location)
+        mongo.db.locations.insert_one(location)
+        flash("Location added")
+
+        return redirect(url_for('locations'))
+    
+    return render_template('add_location.html')
+
+
+@app.route("/event_details/<meetUp_id>")
+def event_details(meetUp_id):
+    """
+    Returns details of the selected event along with a location map
+    """
+    meetUp = mongo.db.meetUp.find_one({"_id": ObjectId(meetUp_id)})
+    location = mongo.db.locations.find_one({"name": meetUp['location']})
+    return render_template('event_details.html', meetUp=meetUp, location=location)
+    
+
 #error handlers
 @app.errorhandler(404)
 def page_not_found(e):
     return redirect(url_for("index"))
 
 
-
-
 # Run the App
 # =================
-'''
-if __name__ == "__main__":
-    app.run(
-        host=app.config["FLASK_IP"],
-        port=app.config["FLASK_PORT"],
-        debug=app.config["FLASK_DEBUG"],
-        use_reloader=False
-    )'''
 
 if __name__ == "__main__":
+
     app.run(host=os.environ.get("FLASK_IP"),
-        port=os.environ.get("FLASK_PORT"),
-        debug=os.environ.get("FLASK_DEBUG"),
-    )
+            port=int(os.environ.get("FLASK_PORT")),
+            debug=os.environ.get("FLASK_DEBUG"))
+
+    
+
+

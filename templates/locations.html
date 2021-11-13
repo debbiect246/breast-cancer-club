@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %} 
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="offset-2 col-10 mt-5">
+                <div>
+                    <a href="{{ url_for('add_location') }}" class="btn btn-lg btn-primary">Add Location</a>
+                </div>
+                <h1 class="centre mt-4">Events</h1>
+                {% for meetUp in meetUps %}
+                    <p><a href="{{ url_for('event_details', meetUp_id=meetUp._id) }}">{{ meetUp.title }}</a></p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+
+{% endblock %}
