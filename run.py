@@ -12,7 +12,12 @@ if os.path.exists("envWS.py"):
 
 app = Flask(__name__)
 
+
+
+
+# take app configuration from OS environment variables
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
+
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 
@@ -163,7 +168,13 @@ def page_not_found(e):
 
 # Run the App
 # =================
+
 if __name__ == "__main__":
+
     app.run(host=os.environ.get("FLASK_IP"),
             port=int(os.environ.get("FLASK_PORT")),
             debug=os.environ.get("FLASK_DEBUG"))
+
+    
+
+
