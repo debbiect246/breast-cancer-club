@@ -13,12 +13,7 @@ if os.path.exists("envWS.py"):
 app = Flask(__name__)
 
 # take app configuration from OS environment variables
-app.secret_key = os.environ.get("FLASK_SECRET_KEY")  # => Heroku Config Vars
-app.config["FLASK_IP"] = os.environ.get("FLASK_IP",   "0.0.0.0")
-# the source 'PORT' name is mandated by Heroku app deployment
-app.config["FLASK_PORT"] = int(os.environ.get("PORT"))
-app.config["FLASK_DEBUG"] = os.environ.get("FLASK_DEBUG", "False").lower() \
-                            in {'1', 'true', 't', 'yes', 'y'}
+
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 
