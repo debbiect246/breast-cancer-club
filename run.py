@@ -123,10 +123,17 @@ def page_not_found(e):
 
 # Run the App
 # =================
+'''
 if __name__ == "__main__":
     app.run(
         host=app.config["FLASK_IP"],
         port=app.config["FLASK_PORT"],
         debug=app.config["FLASK_DEBUG"],
         use_reloader=False
+    )'''
+
+if __name__ == "__main__":
+    app.run(host=os.environ.get("FLASK_IP"),
+        port=os.environ.get("FLASK_PORT"),
+        debug=os.environ.get("FLASK_DEBUG"),
     )
