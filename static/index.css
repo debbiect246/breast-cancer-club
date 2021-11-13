@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin:wght@700&family=Lato:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Roboto+Slab:wght@300&display=swap');
+
+.home {
+    background-color: #f7fff7;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+}
+
+/** header **/
+
+.login-menu ul {
+    display: flex;
+    gap: 3rem;
+    list-style-type: none;
+    padding-right: 20px;
+}
+
+.login-menu a {
+    display: block;
+    width: 20rem;
+    text-align: center;
+}
+
+.login-btn {
+    background-color: #4ecdc4;
+}
+
+.register-btn {
+    background-color: #d258a3;
+}
+
+/** hero and club **/
+section.hero-image {
+    height: 80vh;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+#club-image {
+    height: 80vh;
+    background: url('images/Patient_in_Phone.svg') no-repeat center center;
+    display: inline-block;
+    width: 40%;
+}
+
+.club {
+    width: 40%;
+    float: left;
+}
+
+.club h1 {
+    font-family: 'Cabin', sans-serif;
+    font-weight: 700;
+    color: #D258A3;
+    font-size: 4.5rem;
+    }
+
+.club h2 {
+    color: #0a6a78;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 4rem;
+    font-weight: 400;
+}
+
+.club a {
+    font-weight: 700;
+    background-color: #ffe66d;
+}
+
+/** buttons and links **/
+
+.btn {
+    color: black;
+    font-family: 'Roboto Slab', serif;
+    font-weight: 600;
+    font-size: 3rem;
+    letter-spacing: .05em;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 2.5rem;
+    padding: 0.75rem 2rem;
+}
