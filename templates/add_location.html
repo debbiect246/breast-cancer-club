@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %} 
+
+<body>
+    <div class="container-fluid mt-5">
+        <div class="row">
+            <div class="offset-2 col-10 ms-5">
+                <form method="POST" action="{{ url_for('add_location') }}">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Location Name</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                    <div id="locationHelp">
+                        <h5 class="mb-0">Please enter the x and y coordinate of the location</h5>
+                    </div>
+                    <div class="mb-3">
+                        <label for="x-coord" class="form-label">x-coordinate</label>
+                        <input type="text" class="form-control" id="x-coord" name="x-coord" aria-describedby="locationHelp" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="y-coord" class="form-label">y-coordinate</label>
+                        <input type="text" class="form-control" id="y-coord" name="y-coord" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+{% endblock %}
+
