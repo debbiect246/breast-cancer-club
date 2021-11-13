@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cabin:wght@700&family=Lato:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Roboto+Slab:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cabin:wght@700&family=Lato:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Roboto+Slab:wght@0,300;0,400;&display=swap');
 
 .home {
     background-color: #f7fff7;
@@ -29,34 +29,30 @@
     background-color: #d258a3;
 }
 
-/** hero and club **/
-section.hero-image {
+/** Club **/
+.club-section {
     height: 80vh;
-    width: 100%;
+    width: 80%;
     margin: 0 auto;
     position: relative;
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 20%;
+   align-items: center;
 }
 
-#club-image {
-    height: 80vh;
-    background: url('images/Patient_in_Phone.svg') no-repeat center center;
-    display: inline-block;
-    width: 40%;
+.club-image img {
+    height: 900px;
 }
 
-.club {
-    width: 40%;
-    float: left;
-}
-
-.club h1 {
+.club-details h1 {
     font-family: 'Cabin', sans-serif;
     font-weight: 700;
     color: #D258A3;
     font-size: 4.5rem;
     }
 
-.club h2 {
+.club-details h2 {
     color: #0a6a78;
     font-weight: 400;
     font-style: italic;
@@ -64,8 +60,8 @@ section.hero-image {
     font-weight: 400;
 }
 
-.club a {
-    font-weight: 700;
+.club-details a {
+    font-weight: 600;
     background-color: #ffe66d;
 }
 
@@ -74,8 +70,8 @@ section.hero-image {
 .btn {
     color: black;
     font-family: 'Roboto Slab', serif;
-    font-weight: 600;
-    font-size: 3rem;
+    font-weight: 300;
+    font-size: 2rem;
     letter-spacing: .05em;
     text-decoration: none;
     text-align: center;

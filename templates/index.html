@@ -5,20 +5,22 @@
         <nav class="login-menu">
             <ul>
                 <li>
-                    <a href="#" class="btn login-btn">Login</a>
+                    <a href="login.html" class="btn login-btn">Login</a>
                 </li>
                 <li>
-                    <a href="#" class="btn register-btn">Register</a>
+                    <a href="register.html" class="btn register-btn">Register</a>
                 </li>
             </ul>
         </nav>
     </header>
-    <section class="hero-image">
-        <div id="club-image" aria-label="displays image of patient in phone"></div>
-        <div class="club">
+    <section class="club-section">
+        <div class="club-image">
+            <img src="{{ url_for('.static', filename='images/Patient_in_Phone.svg') }}" alt="patient in phone">
+        </div>
+        <div class="club-details">
             <h1>Breast Cancer Club</h1>
             <h2>Let's Meet Up?</h2>
-            <a href="#" class="btn">View Events</a>
+            <a href="events.html" class="btn">View Events</a>
         </div>
     </section>
 </body>
