@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin:wght@700&family=Lato:ital,wght@0,300;0,400;0,700;1,400&family=Roboto+Slab:wght@300&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+body {
+    background-color: #f7fff7;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+}
+
+/** header **/
+.login-menu {
+    display: flex;
+    justify-content: flex-end;
+    list-style-type: none;
+    margin-top: 15px;
+    margin-right: 30px;
+}
+
+.login-menu li {
+    flex: 0 0 200px;
+}
+
+/** Club **/
+#club-section {
+    height: 90%;
+    width: 80%;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.club-details {
+    text-align: center;
+    order: -1;
+}
+
+.club-details h1 {
+    font-family: 'Cabin', sans-serif;
+    font-weight: 700;
+    color: #D258A3;
+    font-size: 4.5rem;
+    }
+
+.club-details h2 {
+    color: #0a6a78;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 4rem;
+    font-weight: 400;
+}
+
+/** buttons and links **/
+
+.btn {
+    color: black;
+    font-family: 'Roboto Slab', serif;
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: .05em;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 2.5rem;
+    padding: 0.1em 1em;
+}
+
+
+.login-btn {
+    background-color: #4ecdc4;
+}
+
+.register-btn {
+    background-color: #d258a3;
+}
+
+
+.club-details a {
+    background-color: #ffe66d;
+    font-size: 2.5rem;
+}
+
+/*-------for mobile devices------*/
+@media(max-width:768px) {
+    #club-section {
+        height: 90%;
+        width: 80%;
+        margin: 0 auto;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+    }
+    
+    .club-details {
+        text-align: center;
+        order: 0;
+    }
+
+
+}
