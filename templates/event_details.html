@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %} 
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="offset-2 col-8 mt-5">
+                <h1>{{meetUp.title}} @ {{location.name}}</h1>
+                <div id="map" style="width:100%; height:500px;"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="offset-2 col-8 mt-5"></div>
+        </div>
+    </div>
+</body>
+{% endblock %}
+
+{% block scripts %}
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXis5u_8WJlKTjfAJZ0jiaWesRUQL9a4s&callback=initMap"
+        type="text/javascript">
+</script>
+<script type="text/javascript">
+    function initMap() {
+        const latlng = new google.maps.LatLng({{location.x}},{{location.y}});
+        const options = {
+            zoom: 20,
+            center: latlng,
+        };
+        const label = "A"
+        const map = new google.maps.Map(document.getElementById('map'), options);
+        const marker = new google.maps.Marker({
+            position: latlng,
+            map: map,
+            label: label
+        });
+    }
+</script>
+{% endblock %}
