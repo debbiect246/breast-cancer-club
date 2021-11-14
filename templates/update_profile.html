@@ -10,6 +10,7 @@
 </div>
 <!-- Edit Profile form-->
 <div class="pb-5">
+    <form method="POST" action="{{ url_for('update_profile', profile_id=profile._id) }}" class="col-10 offset-1">
 
         <div class="form-group">
             <label for="fullname">Name</label>
