@@ -114,9 +114,9 @@ def blog():
 #events view
 @app.route("/events")
 def events():
-    def events():
         meetUps = mongo.db.meetUp.find()
-        return render_template('events.html', meetups=meetups)
+        print(meetUps)
+        return render_template('events.html', meetUps=meetUps)
 
 
 #locations view (temporary)
@@ -173,6 +173,6 @@ def page_not_found(e):
 
 if __name__ == "__main__":
 
-    app.run(host=os.environ.get("FLASK_IP"),
-            port=int(os.environ.get("FLASK_PORT")),
+    app.run(host=os.environ.get("IP"),
+            port=int(os.environ.get("PORT")),
             debug=os.environ.get("FLASK_DEBUG"))
