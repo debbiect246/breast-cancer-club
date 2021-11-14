@@ -115,8 +115,8 @@ def blog():
 @app.route("/events")
 def events():
     def events():
-    events = Events.objects()
-    return render_template('events.html', events=events)
+    meetUps = mongo.db.meetUp.find()
+    return render_template('events.html', meetups=meetups)
 
 
 #locations view (temporary)
