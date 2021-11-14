@@ -257,7 +257,9 @@ def delete_blog(blog_id):
 #events view
 @app.route("/events")
 def events():
-    return render_template("events.html")
+        meetUps = mongo.db.meetUp.find()
+        print(meetUps)
+        return render_template('events.html', meetUps=meetUps)
 
 
 #locations view (temporary)
@@ -321,7 +323,6 @@ def attending(meetUp_id):
 
     return redirect(url_for("event_details", meetUp_id=meetUp_id))
 
-
 #error handlers
 @app.errorhandler(404)
 def page_not_found(e):
@@ -331,11 +332,9 @@ def page_not_found(e):
 # Run the App
 # =================
 
-
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
-    port=int(os.environ.get("FLASK_PORT")),
-    debug=True)
-    
 
+    port=int(os.environ.get("PORT")),
+    debug=True)
 
