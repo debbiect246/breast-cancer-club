@@ -2,17 +2,15 @@
 {% block content %} 
 <body>
     <div class="container-fluid">
-        <h1 class="centre">Welcome to the breast cancer Club events page!</h1>
-        
-    </div>
+        <h1 class="centre">Welcome to the Breast Cancer Club Events Page!</h1>
+        <div>
+            <p>Popular</p>
+        </div>
+        <div>
+            {% for meetUp in meetUps %}
+                {% include 'event_card.html' %}
+            {% endfor %}
+        </div>
 </body>
 
 {% endblock %}
-
-
-
-
-
-
-
-
