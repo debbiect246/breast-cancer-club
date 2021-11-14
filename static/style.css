@@ -12,13 +12,7 @@
 body {
     min-height:100%; 
 }
-.main-wrapper {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    position:relative; 
-    padding-bottom:6.2rem;
-}
+
 
 .content{
     flex-grow: 1;
@@ -76,9 +70,7 @@ header-logo:hover {
     align-items: center;
 }
 
-.header-burger {
-    display: none;
-}
+
 
 .menu-list {
     display: flex;
@@ -214,12 +206,7 @@ header-logo:hover {
     width: 100%;
 }
 
-.hero-header {
-    text-transform: uppercase;
-    font-weight: 400;
-    font-family: "Montserrat", sans-serif;
-    font-size: 2.5rem;
-}
+
 
 .text-box {
     position: absolute;
@@ -267,33 +254,7 @@ header-logo:hover {
     background-image: linear-gradient(to right, #D35AA4 , #F9E8F2);
 }
 
-/*-------ONBOARDING---------*/
 
-.onb-img {
-    max-height: auto;
-    max-width: 100%;
-}
-
-#stages {
-    list-style: none;
-    width: 100%;
-    margin-left: 0;
-}
-
-
-.section-text i {
-    color: #1e698d;
-    font-size: 1.5rem;
-    padding-right: 5px;
-  }
-
-  .text-box p {
-      text-transform: none;
-  }
-
-  #about i {
-   color: #789fbb;
-  }
   
 .section-heading {
     text-transform: uppercase;
@@ -313,42 +274,8 @@ header-logo:hover {
       padding: 10px;
   }
 
-/*-------ONBOARDING---------*/
 
-#onboard {
-    font-family: "Montserrat", sans-serif;
-    color: #131925;
-    font-weight: 400;
-    text-align: center;
-    font-size: 2rem;
-}
 
-.points {
-    font-family: "Montserrat", sans-serif;
-    color: #1e698d;
-    font-weight: 400;
-    text-align: justify;
-    font-size: 1.5rem;
-    margin-left: 10px;
-}
-
-#stages {
-    font-family: "Montserrat", sans-serif;
-    color: #1e698d;
-    font-weight: 400;
-    text-align: left;
-    font-size: 1rem;
-    margin-left: 10px;
-}
-
-.process {
-    font-family: "Montserrat", sans-serif;
-    color: #1e698d;
-    font-weight: 400;
-    text-align: justify;
-    font-size: 1rem;
-    margin-left: 10px;
-}
 
 /*-------ONBOARDING---------*/
 
@@ -359,34 +286,6 @@ header-logo:hover {
     text-align: center;
     font-size: 2rem;
     padding: 10px;
-}
-
-.points {
-    font-family: "Montserrat", sans-serif;
-    color:  #131925;
-    font-weight: 400;
-    font-size: 1.5rem;
-    margin-left: 10px;
-    width: 80%;
-}
-
-#stages {
-    font-family: "Montserrat", sans-serif;
-    color: #1e698d;
-    font-weight: 400;
-    font-size: 1rem;
-    margin-left: 10px;
-    width: 80%;
-}
-
-.process {
-    font-family: "Montserrat", sans-serif;
-    color: #1e698d;
-    font-weight: 400;
-    text-align: justify;
-    font-size: 1rem;
-    margin-left: 10px;
-    width: 80%;
 }
 
   /*-------FOOTER---------*/
