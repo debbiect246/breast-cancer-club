@@ -4,12 +4,11 @@
     <div class="container-fluid">
         <h1 class="centre">Welcome to the Breast Cancer Club Events Page!</h1>
         <div>
-            <p>POPULAR</p>
-            <p>UPCOMING</p>
+            <p>Popular</p>
         </div>
         <div>
-            {% for meetup in meetups %}
-                <p>{{meetup.type}}</p>
+            {% for meetUp in meetUps %}
+                {% include 'event_card.html' %}
             {% endfor %}
         </div>
 </body>
