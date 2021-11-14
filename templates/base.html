@@ -21,33 +21,60 @@
 
 <body>
     <!--NAVIGATION-->
-    <header id="header">
-        <nav class="navbar navbar-expand-sm bg-dark">                                       
-            <ul class="navbar-nav"> 
-                <ul class="menu-list">
-                    <li>
-                        <a href="{{ url_for('index') }}" class="menu-item">Home</a>
-                    </li>
-                    <li>
-                        <a href="{{ url_for('blog') }}" class="menu-item">Blog</a>
-                    </li>
-                    <li>
-                        <a href="{{ url_for('events') }}" class="menu-item">Events</a>
-                    </li>
-                    <li>
-                        <a href="{{ url_for('login') }}" class="menu-item">Sign In</a>
-                    </li>
-                    <li>
-                        <a href="{{ url_for('register') }}" class="menu-item">Sign Up</a>
-                    </li>
-                    <li>
-                        <a href="{{ url_for('locations') }}" class="menu-item">Locations</a>
-                    </li>
-                </ul>
-            </ul>
-        </nav>
-    </header>            
-    
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Breast Cancer Club</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li>
+                <a href="{{ url_for('index') }}" class="menu-item">Home</a>
+            </li>
+          {% if session.user %}
+          <li>
+            <a href="{{ url_for('my_profile', username=session['user']) }}" class="menu-item">My Profile</a>
+        </li>
+        <li>
+            <a href="{{ url_for('events') }}" class="menu-item">Events</a>
+        </li>
+        <li>
+            <a href="{{ url_for('locations') }}" class="menu-item">Locations</a>
+        </li>
+        <li>
+            <a href="{{ url_for('blogs') }}" class="menu-item">Blog</a>
+        </li>
+        <li>
+            <a href="{{ url_for('logout') }}" class="menu-item">Sign Out</a>
+        </li>
+            {% else %}
+            <li>
+                <a href="{{ url_for('login') }}" class="menu-item">Sign In</a>
+            </li>
+            <li>
+                <a href="{{ url_for('register') }}" class="menu-item">Sign Up</a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+  </header>           
+
+  <!--Display Flash Messages-->
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+  <section class="flash-container">
+    {% for message in messages %}
+    <div id="flashMessage{{loop.index}}" class="flash row">
+      <div class="col-12 col-md-6 offset-md-3">
+        <h4 class="flash-message text-center">{{ message }}</h4>
+      </div>
+    </div>
+    {% endfor %}
+  </section>
+  {% endif %}
+  {% endwith %}
         
 
     <!--FOOTER-->
@@ -84,7 +111,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     
     <!-- Custom scripts -->
-    <!--<script type="text/javascript" src="{{ url_for('static', filename='./js/script.js') }}"></script>-->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     {% block scripts %}
     {% endblock %}
 </body>
