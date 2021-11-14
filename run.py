@@ -318,7 +318,8 @@ def attending(meetUp_id):
     meetUp = mongo.db.meetUp.find_one({"_id": ObjectId(meetUp_id)})
     if request.method == "POST":
         attendee = user_id
-        mongo.db.meetUp.update_one(MeetUp, {"$push": {"attending": attendee}})
+        print(attendee)
+        mongo.db.meetUp.update_one(meetUp, {"$push": {"attending": attendee}})
         flash("You have been recorded as attending")
 
     return redirect(url_for("event_details", meetUp_id=meetUp_id))
