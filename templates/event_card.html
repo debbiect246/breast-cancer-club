@@ -2,4 +2,18 @@
     <div>
         <img src="{{meetup.img_url}}" alt="A picture of my meetup">
     </div>
+    <div>
+        <p>Name: <span">{{meetup.name}}</span></p>
+        {% if meetup.event_organiser == current_user %}
+            <div class="flex gap-2">
+                <a href="#" class="underline ">Edit</a>
+                <a href="#" class="underline ">Delete</a>
+            </div>
+        {% else %}
+            Event Organiser: {{meetup.event_organiser.username}}
+        {% endif %}
+        <p>Type: {{meetup.type}}</p>
+        <div>
+        <a href="#" class="underline">Full Size / Comments</a>
+    </div>
 </div>

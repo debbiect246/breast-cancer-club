@@ -7,10 +7,11 @@
             <p>POPULAR</p>
             <p>UPCOMING</p>
         </div>
-        {% for meetup in meetups %}
-            {% include '_event_card.html' %}
-        {% endfor %}
-    </div>
+        <div>
+            {% for meetup in meetups %}
+                <p>{{meetup.type}}</p>
+            {% endfor %}
+        </div>
 </body>
 
 {% endblock %}
