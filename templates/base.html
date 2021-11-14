@@ -29,7 +29,7 @@
                         <a href="{{ url_for('index') }}" class="menu-item">Home</a>
                     </li>
                     <li>
-                        <a href="{{ url_for('blog') }}" class="menu-item">Blog</a>
+                        <a href="{{ url_for('blogs') }}" class="menu-item">Blog</a>
                     </li>
                     <li>
                         <a href="{{ url_for('events') }}" class="menu-item">Events</a>
@@ -48,6 +48,20 @@
         </nav>
     </header>            
     
+      <!--Display Flash Messages-->
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+  <section class="flash-container">
+    {% for message in messages %}
+    <div id="flashMessage{{loop.index}}" class="flash row">
+      <div class="col-12 col-md-6 offset-md-3">
+        <h4 class="flash-message text-center">{{ message }}</h4>
+      </div>
+    </div>
+    {% endfor %}
+  </section>
+  {% endif %}
+  {% endwith %}
         
 
     <!--FOOTER-->

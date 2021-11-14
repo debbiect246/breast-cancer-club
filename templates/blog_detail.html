@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!--Blog Post Details-->
+<div class="row">
+    <div class="col text-center">
+        <div class="card blogpost">
+            <img class="card-img-top img-fluid blog-img" src="{{ url_for('static', filename='images/'+blog.image ) }}"
+                alt="{{ blog.blog_title }}">
+            <h2>{{ blog.blog_title }}</h2>
+            <p>
+                Author: {{ blog.created_by }}
+            </p>
+            <p>
+                Published On: {{ blog.date_created }}
+            </p>
+
+            <p>
+                {{ blog.content }}
+            </p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
