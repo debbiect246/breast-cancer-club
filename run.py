@@ -16,7 +16,7 @@ app = Flask(__name__)
 
 
 # take app configuration from OS environment variables
-app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
+app.secret_key = os.environ.get("FLASK_SECRET_KEY")
 
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
@@ -25,6 +25,26 @@ mongo = PyMongo(app)
 
 
 date = date.today()
+
+
+# Global functions:
+# ==============
+def find_user():
+    """
+    Determines current user using the username value of the current session
+    user and returns the current user as a dict.
+    """
+    current_user = mongo.db.users.find_one({"username": session["user"]})
+    return current_user
+
+
+def find_id():
+    """
+    Determines the ObjectId value of the current user and returns it as a
+    string value.
+    """
+    user_id = str(find_user()['_id'])
+    return user_id
 
 # App routes
 # ==============
@@ -121,17 +141,15 @@ def events():
 @app.route("/locations")
 def locations():
     locations = mongo.db.locations.find()
-    print('hello')
-    print(locations)
     meetUps = mongo.db.meetUp.find()
-    print(meetUps)
     return render_template("locations.html", locations=locations, meetUps=meetUps)
 
 
 @app.route("/add_location", methods=["GET", "POST"])
 def add_location():
     """
-    Allows admin user to add a location to the database.  It can then be selected when setting up an event
+    Allows admin user to add a location to the database.  It can then be 
+    selected when setting up an event
     """
     print('add location function called')
     if request.method == "POST":
@@ -157,8 +175,29 @@ def event_details(meetUp_id):
     """
     meetUp = mongo.db.meetUp.find_one({"_id": ObjectId(meetUp_id)})
     location = mongo.db.locations.find_one({"name": meetUp['location']})
-    return render_template('event_details.html', meetUp=meetUp, location=location)
+    number_attending = len(meetUp['attending'])
+    print(number_attending)
+
+    return render_template('event_details.html', meetUp=meetUp, 
+                           location=location, 
+                           number_attending=number_attending)
     
+
+@app.route("/attending/<meetUp_id>", methods=["GET", "POST"])
+def attending(meetUp_id):
+    """
+    Records the user id of a user and adds it to the attending array within a 
+    MeetUp document on the database
+    """
+    user_id = find_id()
+    meetUp = mongo.db.meetUp.find_one({"_id": ObjectId(meetUp_id)})
+    if request.method == "POST":
+        attendee = user_id
+        mongo.db.meetUp.update_one(MeetUp, {"$push": {"attending": attendee}})
+        flash("You have been recorded as attending")
+
+    return redirect(url_for("event_details", meetUp_id=meetUp_id))
+
 
 #error handlers
 @app.errorhandler(404)
