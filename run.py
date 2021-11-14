@@ -211,7 +211,7 @@ def page_not_found(e):
 if __name__ == "__main__":
 
     app.run(host=os.environ.get("FLASK_IP"),
-            port=int(os.environ.get("PORT")),
+            port=int(os.environ.get("FLASK_PORT")),
             debug=os.environ.get("FLASK_DEBUG"))
 
     
