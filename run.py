@@ -53,6 +53,139 @@ def index():
     return render_template("index.html")
 
 
+# Register user in the db
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    if request.method == "POST":
+        # Check if user already in db
+        existing_user = mongo.db.users.find_one(
+                        {"username": request.form.get("username").lower()})
+
+        if existing_user:
+            flash("Username already exists!")
+            return redirect(url_for("register"))
+
+        # check if email already in db
+        existing_email = mongo.db.users.find_one(
+                        {"email": request.form.get("email").lower()})
+
+        if existing_email:
+            flash("Email address already registered!")
+            return redirect(url_for("register"))
+
+        # add user details to db
+        register = {
+            "firstname": request.form.get("firstname").lower(),
+            "lastname": request.form.get("lastname").lower(),
+            "username": request.form.get("username").lower(),
+            "email": request.form.get("email").lower(),
+            "password": generate_password_hash(request.form.get("password")),
+            "date_created": date.strftime("%d %b %Y")
+        }
+        mongo.db.users.insert_one(register)
+
+        # put the user into a session cookie
+        session["user"] = request.form.get("username").lower()
+        flash("Sign Up Successful!")
+        return redirect(url_for("my_profile", username=session["user"]))
+
+    return render_template("register.html")
+
+
+# Log existing user into site
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        # Check if user already in db
+        existing_user = mongo.db.users.find_one(
+                        {"username": request.form.get("username").lower()})
+        # ensure password matches
+        if existing_user:
+            if check_password_hash(existing_user["password"],
+                                   request.form.get("password")):
+                session["user"] = request.form.get("username").lower()
+                return redirect(url_for("my_profile",
+                                username=session["user"]))
+            else:
+                # invalid password
+                flash("Incorrect Username/Password!")
+                return redirect(url_for("login"))
+        else:
+            # username doesn't exist/is incorrect
+            flash("Incorrect Usernname/Password")
+            return redirect(url_for("login"))
+
+    return render_template("login.html")
+
+
+# Logs user out of their account
+@app.route("/logout")
+def logout():
+    # remove user from session cookie
+    flash("You have been logged out")
+    session.pop("user")
+    return redirect(url_for("login"))
+
+# Add profile form
+@app.route("/add_profile", methods=["GET", "POST"])
+def add_profile():
+    if request.method == "POST":
+        # default values if fields are left blank
+        default_img = ("profile_image.png")
+        profile = {
+            "member_type": request.form.get("member_type"),
+            "fullname": request.form.get("fullname"),
+            "birthday": request.form.get("birthday"),
+            "image": request.form.get("image") or default_img,
+            "created_by": session["user"],
+            "date_created": date.strftime("%d %b %Y")
+        }
+        mongo.db.profiles.insert_one(profile)
+        flash("Your Profile Has Been Added")
+        return redirect(url_for("my_profile", username=session["user"]))
+
+    profiles = mongo.db.profiles.find().sort("fullname", 1)
+    return render_template("add_profile.html", profiles=profiles)
+
+
+# Update profile form
+@app.route("/update_profile/<profile_id>", methods=["GET", "POST"])
+def update_profile(profile_id):
+    if request.method == "POST":
+        # default values if fields are left blank
+        default_img = ("profile_image.png")
+        update = {
+            "member_type": request.form.get("member_type"),
+            "fullname": request.form.get("fullname"),
+            "birthday": request.form.get("birthday"),
+            "image": request.form.get("image") or default_img,
+            "created_by": session["user"],
+            "date_created": date.strftime("%d %b %Y")
+        }
+        mongo.db.profiles.update({"_id": ObjectId(profile_id)}, update)
+        flash("Your Profile Has Been Updated")
+        return redirect(url_for("my_profile", username=session["user"]))
+
+    profile = mongo.db.profiles.find_one({"_id": ObjectId(profile_id)})
+    profiles = mongo.db.profiles.find().sort("fullname", 1)
+    return render_template("update_profile.html", profile=profile,
+                           profiles=profiles)
+
+
+# Display personal profile page
+@app.route("/my_profile/<username>", methods=["GET", "POST"])
+def my_profile(username):
+    # grab the session user's username from db
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+    if session["user"]:
+        my_profile = list(mongo.db.profiles.find(
+                {"created_by": session["user"]}))
+        user = mongo.db.users.find_one({"username": session["user"]})
+        return render_template("profile.html", username=username,
+                               user=user, profiles=my_profile)
+    return redirect(url_for('login'))
+    
 #blog view
 # Displays all blog posts  in the db
 @app.route("/blogs")
