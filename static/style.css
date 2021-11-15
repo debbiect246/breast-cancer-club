@@ -14,9 +14,16 @@ body {
     background-color: #f7fff7;
 }
 
+.container-fluid {
+    margin-top: 3rem;
+}
+
 
 /*-------NAVBAR------*/
 
+.navbar {
+    background-color: #f0c8e0;
+}
 
 .menu-list {
     display: flex;
