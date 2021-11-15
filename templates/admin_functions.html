@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <!-- Display admin functions -->
+    <div class="row">
+        <div class="col-10 offset-1 ">
+            <div id="profile" class="tabcontent mb-3 mt-4 text-center">
+                <h2>Admin Functions</h2>
+                <div class="col-12 text-center">
+                    <a href="{{ url_for('add_location') }}" class="btn btn-lg green-bg mb-3">Add Location</a>
+                </div>
+                <div class="col-12 text-center">
+                    <a href="{{ url_for('add_meetup') }}" class="btn green-bg">Add MeetUp</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
