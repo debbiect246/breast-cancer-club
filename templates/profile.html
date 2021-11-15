@@ -27,7 +27,7 @@
                         </div>
                     </div>
                     <div class="col-12 text-center">
-                        <a href="{{ url_for('update_profile', profile_id=profile._id) }}" class="btn updateprofilebtn">Update Profile</a>
+                        <a href="{{ url_for('update_profile', profile_id=profile._id) }}" class="btn green-bg">Update Profile</a>
                     </div>
                     {% endfor %}
                 </div>
@@ -35,7 +35,7 @@
                 <div class="col-12 text-center mt-2">
                     <h3>You have not added your profile yet</h3>
                     <h3>Please add your profile</h3>
-                    <a href="{{ url_for('add_profile') }}" class="btn" type="submit">Add Your Profile</a>
+                    <a href="{{ url_for('add_profile') }}" class="btn green-bg" type="submit">Add Your Profile</a>
                 </div>
                 {% endif %}
             </div>
