@@ -176,4 +176,63 @@ footer {
     padding-bottom: 0.2rem;
 }
 
+/** Forms **/
+.cta-section {
+    width: 25%;
+    margin: 20px auto;
+}
 
+.cta-section h3 {
+    font-family: 'Roboto Slab', serif;
+    color: #D258A3;
+    font-size: 3.5rem;
+    text-align: center;
+}
+
+.cta-form {
+    background-image: linear-gradient(to right, #D258A3, #faebf4);
+    padding: 30px;
+    border: 1px solid rgb(41, 40, 40);
+    border-radius: 5px;
+}
+
+.cta-form button {
+    margin-top: 20px;
+}
+
+.cta-form-link {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.cta-form-link p {
+    font-size: 1.3rem;
+}
+
+.btn {
+    color: black;
+    font-size: 1.5rem;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 2.3rem;
+    padding: 0.2em 1em;
+}
+
+.green-bg {
+    background-color: #4ecdc4;
+}
+
+.yellow-bg {
+    background-color: #ffe66d;
+}
+
+.align-center {
+    text-align: center;
+}
+
+.width-70-percent {
+    width: 70%;
+}
