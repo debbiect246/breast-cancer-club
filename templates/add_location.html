@@ -4,10 +4,14 @@
 <body>
     <div class="container-fluid mt-5">
         <div class="row">
-            <div class="offset-2 col-10 ms-5">
+            <div class="offset-3 col-6">
+                <div class="col-12 text-center">
+                    <a href="{{ url_for('admin_functions') }}" class="btn yellow-bg mb-3">Back</a>
+                </div>
                 <form method="POST" action="{{ url_for('add_location') }}">
+                    <h3 class="text-center">Add Location</h3>
                     <div class="mb-3">
-                        <label for="name" class="form-label">Location Name</label>
+                        <label for="name" class="form-label"><h5>Location Name</h5></label>
                         <input type="text" class="form-control" id="name" name="name" required>
                     </div>
                     <div id="locationHelp">
@@ -21,7 +25,9 @@
                         <label for="y-coord" class="form-label">y-coordinate</label>
                         <input type="text" class="form-control" id="y-coord" name="y-coord" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn green-bg">Submit</button>
+                    </div>
                 </form>
             </div>
         </div>

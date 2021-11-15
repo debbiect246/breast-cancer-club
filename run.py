@@ -80,7 +80,8 @@ def register():
             "username": request.form.get("username").lower(),
             "email": request.form.get("email").lower(),
             "password": generate_password_hash(request.form.get("password")),
-            "date_created": date.strftime("%d %b %Y")
+            "date_created": date.strftime("%d %b %Y"),
+            "admin": False
         }
         mongo.db.users.insert_one(register)
 
@@ -125,6 +126,7 @@ def logout():
     flash("You have been logged out")
     session.pop("user")
     return redirect(url_for("login"))
+
 
 # Add profile form
 @app.route("/add_profile", methods=["GET", "POST"])
@@ -182,8 +184,11 @@ def my_profile(username):
         my_profile = list(mongo.db.profiles.find(
                 {"created_by": session["user"]}))
         user = mongo.db.users.find_one({"username": session["user"]})
+        admin = user['admin']
+        print(admin)
         return render_template("profile.html", username=username,
-                               user=user, profiles=my_profile)
+                               user=user, profiles=my_profile,
+                               admin = admin)
     return redirect(url_for('login'))
     
 #blog view
@@ -257,17 +262,14 @@ def delete_blog(blog_id):
 #events view
 @app.route("/events")
 def events():
-        meetUps = mongo.db.meetUp.find()
-        print(meetUps)
-        return render_template('events.html', meetUps=meetUps)
-
-
-#locations view (temporary)
-@app.route("/locations")
-def locations():
-    locations = mongo.db.locations.find()
     meetUps = mongo.db.meetUp.find()
-    return render_template("locations.html", locations=locations, meetUps=meetUps)
+    print(meetUps)
+    return render_template('events.html', meetUps=meetUps)
+
+
+@app.route("/admin_functions")
+def admin_functions():
+    return render_template("admin_functions.html")
 
 
 @app.route("/add_location", methods=["GET", "POST"])
@@ -276,21 +278,39 @@ def add_location():
     Allows admin user to add a location to the database.  It can then be 
     selected when setting up an event
     """
-    print('add location function called')
     if request.method == "POST":
-        print('add location POST request')
         location = {
             "name": request.form.get("name"),
             "x": request.form.get("x-coord"),
             "y": request.form.get("y-coord")
         }
-        print(location)
         mongo.db.locations.insert_one(location)
         flash("Location added")
 
-        return redirect(url_for('locations'))
+        return redirect(url_for('admin_functions'))
     
     return render_template('add_location.html')
+
+
+@app.route("/add_meetup", methods=["GET", "POST"])
+def add_meetup():
+    """
+    Allows admin user to add a meetup to the database.
+    """
+    if request.method == "POST":
+        location = {
+            "name": request.form.get("name"),
+            "x": request.form.get("x-coord"),
+            "y": request.form.get("y-coord")
+        }
+        mongo.db.meetUps.insert_one(location)
+        flash("meetUp added")
+
+        return redirect(url_for('admin_functions'))
+    
+    locations = mongo.db.locations.find()
+
+    return render_template('add_meetup.html', locations=locations)
 
 
 @app.route("/event_details/<meetUp_id>")
