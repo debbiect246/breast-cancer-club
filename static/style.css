@@ -178,22 +178,27 @@ footer {
 
 /** Forms **/
 .cta-section {
-    width: 25%;
-    margin: 20px auto;
-}
+    width: 30%;
+    margin: 5px auto;
+    font-size: 1.1rem;
+  }
 
 .cta-section h3 {
     font-family: 'Roboto Slab', serif;
     color: #D258A3;
-    font-size: 3.5rem;
+    font-size: 3rem;
     text-align: center;
 }
 
 .cta-form {
     background-image: linear-gradient(to right, #D258A3, #faebf4);
-    padding: 30px;
+    padding: 20px 30px;
     border: 1px solid rgb(41, 40, 40);
     border-radius: 5px;
+}
+
+.cta-form input {
+    margin-bottom: 5px;
 }
 
 .cta-form button {
@@ -231,8 +236,4 @@ footer {
 
 .align-center {
     text-align: center;
-}
-
-.width-70-percent {
-    width: 70%;
 }
