@@ -320,8 +320,10 @@ Follow these steps to deploy the app from GitHub to Heroku:
   * FLASK_SECRET_KEY
 
 ## 8. Credits
-Favicon:
+- ### Team & Hosts
+- A huge thank you to all of our team members! Christopher, Deborah, Tindy, Valerie and David put a lot of hours into building this project over 4 days.
+- Thanks so much to Code Institute and IT Labs Hacakthon for hosting this Breast Cancer Awareness Hackathon by Women in Tech.
 
-
-Other pages:
+### Content
+- All images used in our project were purchased on Canva Pro using a Canva Pro license that enables them to be reused in commercial and educational projects. This license is held by one of our team - David
 
