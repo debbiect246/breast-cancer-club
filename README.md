@@ -1,5 +1,9 @@
 # Breast Cancer Club 
 
+![AmIResponsive Mockup Screenshot](docs/mockup.jpg "AmIResponsive Mockup Screenshot")
+
+## Project Summary
+
 This app was created by Team Pink Ribbon.
 
 The theme was to create an app to utilize technology to create awareness and support around breast cancer
